@@ -14,8 +14,11 @@ torch
 # Helper library for PyTorch/Transformers to manage hardware allocation.
 accelerate
 
+# Helper library for text chunking, required by the default config.
+chonkie
+
 # Vector database client used by the default memory configuration.
 qdrant-client
 
-# Helper library for text chunking, required by the default config.
-chonkie 
+# Used for creating local text embeddings for memory.
+sentence-transformers 

@@ -97,18 +97,15 @@ La configuración es la misma que en la lección anterior. Asegúrate de que tu 
 
 ### Conceptos Clave
 
--   **ID de Usuario Persistente**: En lugar de generar un `uuid` nuevo cada vez, usamos un `user_id` constante (ej: `"jean_the_learner"`). Esto es fundamental, ya que MemOS asocia toda la memoria a este identificador único.
--   **`mos.get_or_create_user()`**: Este método es ideal para aplicaciones reales. Comprueba si un usuario con ese ID ya existe en su base de datos (`.memos/memos_users.db`) y carga su estado. Si no existe, lo crea por primera vez.
--   **Configuración por Backend**: La forma correcta de configurar MemOS en código es pasar un diccionario al constructor de `MOSConfig`. Este diccionario debe replicar la estructura jerárquica de la librería, especificando el `backend` y un `config` (aunque esté vacío) para cada componente principal:
-    -   `chat_model`: El modelo que genera las respuestas.
-    -   `mem_reader`: El componente que procesa el texto.
-    -   `text_mem`: La configuración para la memoria textual, que a su vez contiene las configuraciones para el `embedder` y la `vector_db`.
--   **Método `mos.chat()`**: Este es el método de alto nivel para interactuar con el agente. Orquesta todo el proceso de forma automática:
-    1.  **Recuperación**: Busca en la base de datos de vectores (Qdrant) recuerdos relevantes para la consulta actual del usuario.
-    2.  **Aumentación**: Inserta los recuerdos encontrados en el *prompt* que se enviará al LLM (Deepseek), dándole contexto.
-    3.  **Generación**: Envía el *prompt* aumentado a Deepseek para obtener una respuesta contextualizada.
-    4.  **Almacenamiento**: Procesa la nueva interacción (pregunta + respuesta) y la añade a la memoria para futuras conversaciones.
--   **Persistencia Automática**: No necesitamos guardar nada manualmente. MemOS, a través de su `MOS` y la base de datos Qdrant configurada localmente, gestiona el almacenamiento y la carga de recuerdos en la carpeta `.memos/` cada vez que se ejecuta el script.
+-   **ID de Usuario Persistente**: Usamos un `user_id` constante (`"jean_the_learner"`) para que MemOS pueda cargar la misma memoria en cada ejecución.
+-   **Configuración Explícita por Diccionario**: La forma más robusta de configurar MemOS en código es construir un diccionario que defina cada componente y pasarlo al constructor de `MOSConfig` usando el operador de desempaquetado de Python (`**`), así: `MOSConfig(**config_dict)`. Esto evita ambigüedades y nos da un control total.
+-   **Jerarquía de Componentes**: Hemos aprendido que la configuración es jerárquica. El `mem_reader` (Lector de Memoria) es un componente complejo que tiene sus propios `llm`, `embedder` y `chunker` internos para procesar los recuerdos antes de almacenarlos.
+-   **Separación de Tareas**: Nuestra configuración final usa:
+    -   **Deepseek API** para el `chat_model` (hablar con el usuario).
+    -   **Qwen (local)** para el `llm` del `mem_reader` (analizar recuerdos).
+    -   **Sentence-Transformers (local)** para el `embedder` (vectorizar recuerdos).
+    -   **Qdrant (local)** para la `vector_db` (almacenar y buscar vectores).
+-   **Método `mos.chat()`**: El método de alto nivel que orquesta la recuperación de memoria, la generación de respuestas y el almacenamiento de nuevos recuerdos.
 
 ### Mini-Ejercicios
 

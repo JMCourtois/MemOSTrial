@@ -6,6 +6,11 @@ from memos import MOS, MOSConfig
 # --- Setup ---
 # Carga la clave de API de Deepseek desde el archivo .env
 load_dotenv()
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
+
+if not DEEPSEEK_API_KEY:
+    print("Error: DEEPSEEK_API_KEY no encontrada en el archivo .env")
+    exit()
 
 # La clave de la persistencia: un ID de usuario fijo.
 USER_ID = "jean_the_learner"
@@ -15,27 +20,45 @@ def chat_session():
     Inicia y gestiona una sesión de chat persistente con el agente de MemOS.
     """
     # --- Configuración del Agente ---
-    # CORRECCIÓN FINAL: Construimos el objeto de configuración con la estructura
-    # jerárquica correcta que espera MemOS, similar a un archivo JSON.
-    print("1. Creando configuración personalizada completa...")
+    # CORRECCIÓN FINAL: Usamos los nombres de backend correctos y la estructura precisa.
+    print("1. Creando configuración personalizada completa y explícita...")
     
-    mos_config = MOSConfig(
-        # Componente para generar respuestas de chat.
-        chat_model={"backend": "deepseek", "config": {}},
-
-        # Componente para procesar y estructurar el texto antes de guardarlo.
-        mem_reader={"backend": "simple_struct", "config": {}},
-
-        # Componente para la memoria. Aquí definimos la memoria de texto.
-        text_mem={
-            "backend": "general_text",
+    config_dict = {
+        # El LLM para chatear con el usuario final.
+        "chat_model": {
+            "backend": "deepseek",
             "config": {
-                # Dentro de la memoria, definimos el embedder y la BBDD de vectores.
-                "embedder": {"backend": "deepseek", "config": {}},
-                "vector_db": {"backend": "qdrant", "config": {}}, # Usa Qdrant local por defecto
+                "api_key": DEEPSEEK_API_KEY,
+                "model_name_or_path": "deepseek-chat",
+            }
+        },
+        # El componente que lee, procesa y estructura la memoria.
+        "mem_reader": {
+            "backend": "simple_struct",
+            "config": {
+                # El "cerebro" interno del lector de memoria (el modelo Qwen local).
+                "llm": {
+                    "backend": "transformers", # Nombre correcto del backend
+                    "config": {"model_name_or_path": "Qwen/Qwen1.5-0.5B-Chat"}
+                },
+                # El "embedder" para el lector de memoria.
+                "embedder": {
+                    "backend": "sentence-transformers", # Nombre correcto del backend
+                    "config": {"model_name_or_path": "all-MiniLM-L6-v2"}
+                },
+                # El "chunker" para dividir el texto.
+                "chunker": {
+                    "backend": "sentence",
+                    "config": {"chunk_size": 512, "chunk_overlap": 128}
+                }
             }
         }
-    )
+        # Nota: La vector_db (Qdrant) se configura por defecto al crear la memoria,
+        # no se especifica en la configuración principal del MOS.
+    }
+
+    # Creamos el objeto MOSConfig a partir de nuestro diccionario.
+    mos_config = MOSConfig(**config_dict)
 
     print("2. Inicializando el Sistema Operativo de Memoria (MOS)...")
     mos = MOS(mos_config)
