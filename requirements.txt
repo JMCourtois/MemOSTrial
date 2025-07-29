@@ -1,0 +1,21 @@
+# Installs the official MemOS library from PyPI, as per the official docs
+MemoryOS
+
+# Required for connecting to the Deepseek API
+deepseek
+
+# Used for loading API keys from a .env file
+python-dotenv
+
+# Required by the transformers library, a dependency of MemOS
+# for local memory processing models.
+torch
+
+# Helper library for PyTorch/Transformers to manage hardware allocation.
+accelerate
+
+# Vector database client used by the default memory configuration.
+qdrant-client
+
+# Helper library for text chunking, required by the default config.
+chonkie 
