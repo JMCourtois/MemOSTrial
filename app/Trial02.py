@@ -69,10 +69,27 @@ def chat_loop(mos: MOS, user_id: str):
         # Paso 2: Generar una respuesta simple basada en si se encontraron memorias.
         assistant_response = ""
         if found_memories:
-            # Si se encuentra una memoria, la usamos en la respuesta.
-            memory_text = found_memories[0]['text'] # Usamos la memoria más relevante.
-            assistant_response = f"Recuerdo que hablamos de algo relacionado. Mencionaste: '{memory_text}'. ¿Es correcto?"
-            print(f"Asistente > {assistant_response}")
+            # El recuerdo encontrado es un diccionario. Gracias al DEBUG, ahora conocemos su estructura.
+            print(f"DEBUG: Estructura del resultado: {found_memories[0]}")
+            
+            # CORRECCIÓN FINAL: Navegamos la estructura de datos correcta.
+            # 1. Obtenemos el primer diccionario de resultados.
+            search_result = found_memories[0]
+            # 2. Obtenemos la lista de objetos de memoria de la clave 'memories'.
+            memory_items = search_result.get('memories')
+
+            if memory_items:
+                # 3. Tomamos el primer objeto de memoria (el más relevante).
+                most_relevant_memory = memory_items[0]
+                # 4. Accedemos a su atributo '.memory' para obtener el texto.
+                memory_text = most_relevant_memory.memory
+
+                assistant_response = f"Recuerdo que hablamos de algo relacionado. Mencionaste: '{memory_text}'. ¿Es correcto?"
+                print(f"Asistente > {assistant_response}")
+            else:
+                # Si el resultado no contenía una lista de 'memories', lo notificamos.
+                assistant_response = "He encontrado un recuerdo relevante, pero no he podido procesar su contenido. Lo tendré en cuenta."
+                print(f"Asistente > {assistant_response}")
         else:
             # Si no hay memoria, damos una respuesta genérica.
             assistant_response = "Entendido. He tomado nota de eso."

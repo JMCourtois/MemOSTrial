@@ -364,3 +364,69 @@
 4. <ID: 532dd2fd-7df4-4efa-98ad-3686aa3fc2f0 | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=18885abe-2c2e-4604-ab56-95cc8fc32d17, status=activated, source=conversation, updated_at=2025-07-29T13:36:48.112340>
 5. <ID: 7bacbfd1-2da0-493c-a2b0-eb5b01f5c28e | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=a6eaad09-3499-445d-b861-78ea89c97217, status=activated, source=conversation, updated_at=2025-07-29T13:34:44.981043>
 
+2025-07-29 13:50:56,559 - httpx - INFO - _client.py:1025 - _send_single_request - HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2025-07-29 13:50:56,567 - httpx - INFO - _client.py:1025 - _send_single_request - HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2025-07-29 13:50:56,768 - memos.chunkers.sentence_chunker - INFO - sentence_chunker.py:29 - __init__ - Initialized SentenceChunker with config: model_schema='memos.configs.chunker.SentenceChunkerConfig' tokenizer_or_token_counter='gpt2' chunk_size=512 chunk_overlap=128 min_sentences_per_chunk=1
+2025-07-29 13:50:56,785 - memos.mem_user.user_manager - INFO - user_manager.py:170 - create_user - User with name 'root' already exists
+2025-07-29 13:50:56,785 - memos.mem_user.user_manager - INFO - user_manager.py:124 - __init__ - UserManager initialized with database at /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/.memos/memos_users.db
+2025-07-29 13:50:56,785 - memos.mem_os.core - INFO - core.py:65 - __init__ - MOS initialized for user: root
+2025-07-29 13:50:56,785 - memos.mem_user.user_manager - INFO - user_manager.py:170 - create_user - User with name 'chat_user_01' already exists
+2025-07-29 13:50:56,786 - memos.configs.vec_db - WARNING - vec_db.py:34 - set_default_path - No host, port, or path provided for Qdrant. Defaulting to local path: /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/.memos/qdrant
+2025-07-29 13:51:04,098 - memos.vec_dbs.qdrant - WARNING - qdrant.py:29 - __init__ - Qdrant is running in local mode (host and port are both None). In local mode, there may be race conditions during concurrent reads/writes. It is strongly recommended to deploy a standalone Qdrant server (e.g., via Docker: https://qdrant.tech/documentation/quickstart/).
+2025-07-29 13:51:04,103 - memos.vec_dbs.qdrant - WARNING - qdrant.py:47 - create_collection - Collection 'Ki-Seki/mem_cube_2' (vector dimension: 768) already exists. Skipping creation.
+2025-07-29 13:51:04,118 - httpx - INFO - _client.py:1025 - _send_single_request - HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2025-07-29 13:51:12,545 - memos.memories.textual.general - INFO - general.py:174 - load - Loaded 2 memories from /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2/textual_memory.json
+2025-07-29 13:51:12,551 - memos.mem_cube.general - INFO - general.py:70 - load - Loaded act_mem from /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2
+2025-07-29 13:51:12,551 - memos.mem_cube.general - INFO - general.py:74 - load - Loaded para_mem from /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2
+2025-07-29 13:51:12,551 - memos.mem_cube.general - INFO - general.py:76 - load - MemCube loaded successfully from /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2 (types: ['text_mem', 'act_mem', 'para_mem'])
+2025-07-29 13:51:12,556 - memos.mem_os.core - INFO - core.py:481 - register_mem_cube - User chat_user_01 already has access to cube /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2
+2025-07-29 13:51:22,747 - memos.mem_os.core - INFO - core.py:534 - search - User chat_user_01 has access to 1 cubes: ['/Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2']
+2025-07-29 13:51:23,056 - httpx - INFO - _client.py:1025 - _send_single_request - HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2025-07-29 13:51:23,059 - memos.vec_dbs.qdrant - INFO - qdrant.py:112 - search - Qdrant search completed with 5 results.
+2025-07-29 13:51:23,060 - memos.mem_os.core - INFO - core.py:554 - search - 🧠 [Memory] Searched memories from /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2:
+1. <ID: 09cd9905-045b-49a9-9838-23c56b8474c4 | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=a7207983-bd1c-44d4-82aa-145e7485fefe, status=activated, source=conversation, updated_at=2025-07-29T13:33:17.313165>
+2. <ID: 7bacbfd1-2da0-493c-a2b0-eb5b01f5c28e | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=a6eaad09-3499-445d-b861-78ea89c97217, status=activated, source=conversation, updated_at=2025-07-29T13:34:44.981043>
+3. <ID: 2393e48f-68b3-4da4-ac8b-8a7b55fe00b8 | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=0d114fd3-758e-4bb8-b3fe-255670bbee96, status=activated, source=conversation, updated_at=2025-07-29T13:39:23.527599>
+4. <ID: f74f3a70-607e-4a99-8897-c529e39646fe | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=cbec7933-0058-425b-a706-fb9585076afb, status=activated, source=conversation, updated_at=2025-07-29T13:26:54.097170>
+5. <ID: 532dd2fd-7df4-4efa-98ad-3686aa3fc2f0 | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=18885abe-2c2e-4604-ab56-95cc8fc32d17, status=activated, source=conversation, updated_at=2025-07-29T13:36:48.112340>
+
+2025-07-29 13:54:01,671 - httpx - INFO - _client.py:1025 - _send_single_request - HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2025-07-29 13:54:01,678 - httpx - INFO - _client.py:1025 - _send_single_request - HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2025-07-29 13:54:02,102 - memos.chunkers.sentence_chunker - INFO - sentence_chunker.py:29 - __init__ - Initialized SentenceChunker with config: model_schema='memos.configs.chunker.SentenceChunkerConfig' tokenizer_or_token_counter='gpt2' chunk_size=512 chunk_overlap=128 min_sentences_per_chunk=1
+2025-07-29 13:54:02,119 - memos.mem_user.user_manager - INFO - user_manager.py:170 - create_user - User with name 'root' already exists
+2025-07-29 13:54:02,119 - memos.mem_user.user_manager - INFO - user_manager.py:124 - __init__ - UserManager initialized with database at /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/.memos/memos_users.db
+2025-07-29 13:54:02,119 - memos.mem_os.core - INFO - core.py:65 - __init__ - MOS initialized for user: root
+2025-07-29 13:54:02,120 - memos.mem_user.user_manager - INFO - user_manager.py:170 - create_user - User with name 'chat_user_01' already exists
+2025-07-29 13:54:02,120 - memos.configs.vec_db - WARNING - vec_db.py:34 - set_default_path - No host, port, or path provided for Qdrant. Defaulting to local path: /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/.memos/qdrant
+2025-07-29 13:54:11,094 - memos.vec_dbs.qdrant - WARNING - qdrant.py:29 - __init__ - Qdrant is running in local mode (host and port are both None). In local mode, there may be race conditions during concurrent reads/writes. It is strongly recommended to deploy a standalone Qdrant server (e.g., via Docker: https://qdrant.tech/documentation/quickstart/).
+2025-07-29 13:54:11,105 - memos.vec_dbs.qdrant - WARNING - qdrant.py:47 - create_collection - Collection 'Ki-Seki/mem_cube_2' (vector dimension: 768) already exists. Skipping creation.
+2025-07-29 13:54:11,146 - httpx - INFO - _client.py:1025 - _send_single_request - HTTP Request: GET http://localhost:11434/api/tags "HTTP/1.1 200 OK"
+2025-07-29 13:54:20,081 - memos.memories.textual.general - INFO - general.py:174 - load - Loaded 2 memories from /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2/textual_memory.json
+2025-07-29 13:54:20,088 - memos.mem_cube.general - INFO - general.py:70 - load - Loaded act_mem from /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2
+2025-07-29 13:54:20,088 - memos.mem_cube.general - INFO - general.py:74 - load - Loaded para_mem from /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2
+2025-07-29 13:54:20,088 - memos.mem_cube.general - INFO - general.py:76 - load - MemCube loaded successfully from /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2 (types: ['text_mem', 'act_mem', 'para_mem'])
+2025-07-29 13:54:20,092 - memos.mem_os.core - INFO - core.py:481 - register_mem_cube - User chat_user_01 already has access to cube /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2
+2025-07-29 13:54:24,869 - memos.mem_os.core - INFO - core.py:534 - search - User chat_user_01 has access to 1 cubes: ['/Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2']
+2025-07-29 13:54:25,185 - httpx - INFO - _client.py:1025 - _send_single_request - HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2025-07-29 13:54:25,190 - memos.vec_dbs.qdrant - INFO - qdrant.py:112 - search - Qdrant search completed with 5 results.
+2025-07-29 13:54:25,191 - memos.mem_os.core - INFO - core.py:554 - search - 🧠 [Memory] Searched memories from /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2:
+1. <ID: 09cd9905-045b-49a9-9838-23c56b8474c4 | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=a7207983-bd1c-44d4-82aa-145e7485fefe, status=activated, source=conversation, updated_at=2025-07-29T13:33:17.313165>
+2. <ID: 7bacbfd1-2da0-493c-a2b0-eb5b01f5c28e | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=a6eaad09-3499-445d-b861-78ea89c97217, status=activated, source=conversation, updated_at=2025-07-29T13:34:44.981043>
+3. <ID: 2393e48f-68b3-4da4-ac8b-8a7b55fe00b8 | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=0d114fd3-758e-4bb8-b3fe-255670bbee96, status=activated, source=conversation, updated_at=2025-07-29T13:39:23.527599>
+4. <ID: f74f3a70-607e-4a99-8897-c529e39646fe | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=cbec7933-0058-425b-a706-fb9585076afb, status=activated, source=conversation, updated_at=2025-07-29T13:26:54.097170>
+5. <ID: 532dd2fd-7df4-4efa-98ad-3686aa3fc2f0 | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=18885abe-2c2e-4604-ab56-95cc8fc32d17, status=activated, source=conversation, updated_at=2025-07-29T13:36:48.112340>
+
+2025-07-29 13:54:25,254 - httpx - INFO - _client.py:1025 - _send_single_request - HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2025-07-29 13:54:25,261 - memos.mem_os.core - INFO - core.py:677 - add - Add memory to /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2 successfully
+2025-07-29 13:54:53,400 - memos.mem_os.core - INFO - core.py:534 - search - User chat_user_01 has access to 1 cubes: ['/Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2']
+2025-07-29 13:54:53,459 - httpx - INFO - _client.py:1025 - _send_single_request - HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2025-07-29 13:54:53,461 - memos.vec_dbs.qdrant - INFO - qdrant.py:112 - search - Qdrant search completed with 5 results.
+2025-07-29 13:54:53,461 - memos.mem_os.core - INFO - core.py:554 - search - 🧠 [Memory] Searched memories from /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2:
+1. <ID: fb4f15d4-a297-4bc1-972b-0cbb5ae010fc | Memory: He encontrado un recuerdo relevante, pero no he podido procesar su contenido. Lo tendré en cuenta. | Metadata: user_id=root, session_id=ea76eb88-546a-4745-9e4f-900efc3a16c7, status=activated, source=conversation, updated_at=2025-07-29T13:54:25.196980>
+2. <ID: 7bacbfd1-2da0-493c-a2b0-eb5b01f5c28e | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=a6eaad09-3499-445d-b861-78ea89c97217, status=activated, source=conversation, updated_at=2025-07-29T13:34:44.981043>
+3. <ID: f74f3a70-607e-4a99-8897-c529e39646fe | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=cbec7933-0058-425b-a706-fb9585076afb, status=activated, source=conversation, updated_at=2025-07-29T13:26:54.097170>
+4. <ID: 302ed3ac-d764-4ff1-a507-69efc553131c | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=ff104186-f63b-4c8a-b057-1b0846576ec9, status=activated, source=conversation, updated_at=2025-07-29T13:29:00.200541>
+5. <ID: 2393e48f-68b3-4da4-ac8b-8a7b55fe00b8 | Memory: Me encanta jugar al fútbol. | Metadata: user_id=root, session_id=0d114fd3-758e-4bb8-b3fe-255670bbee96, status=activated, source=conversation, updated_at=2025-07-29T13:39:23.527599>
+
+2025-07-29 13:54:53,504 - httpx - INFO - _client.py:1025 - _send_single_request - HTTP Request: POST http://localhost:11434/api/embed "HTTP/1.1 200 OK"
+2025-07-29 13:54:53,508 - memos.mem_os.core - INFO - core.py:677 - add - Add memory to /Users/jean/Documents/Halfway/Coding/Github Projects/MemOSTrial/examples/data/mem_cube_2 successfully
